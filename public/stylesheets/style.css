@@ -9,3 +9,7 @@ a {
 #applications {
 	border: 1px solid LightGray;
 }
+
+#applications > * {
+	padding: 5px;
+}
