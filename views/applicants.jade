@@ -3,6 +3,10 @@ extends layout
 block content
 	.container
 		h1 Applicants
+		ol.breadcrumb
+			li
+				a(href='/') Home
+			li.active Applicants
 		each applicant in applicants
 			ul#applications.list-unstyled
 				a(href='/applicants/#{applicant._id}') #{applicant.name}
@@ -11,7 +15,7 @@ block content
 				li #{applicant.skills}
 				li #{applicant.experience} years
 				li #{applicant.reason}
-				li #{applicant._id}
+				//- li #{applicant._id}
 				form(action='/remove' method='post')
 					input(type='hidden' name='id' value='#{applicant._id}')
 					input(type='submit' name='remove' value='Remove')

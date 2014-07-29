@@ -2,14 +2,21 @@ extends layout
 
 block content
 	.container
-		h1 Applicants
+		h1 Applicant: #{applicant.name}
+		ol.breadcrumb
+			li
+				a(href='/') Home
+			li
+				a(href='/applicants') Applicants
+			li.active #{applicant._id}
+
 		ul#applications.list-unstyled
-			li #{applicant.name}
+			//- li #{applicant.name}
 			li #{applicant.bio}
 			li #{applicant.skills}
 			li #{applicant.experience} years
 			li #{applicant.reason}
-			li #{applicant._id}
+			//- li #{applicant._id}
 			form(action='/remove' method='post')
 				input(type='hidden' name='id' value='#{applicant._id}')
 				input(type='submit' name='remove' value='Remove')
