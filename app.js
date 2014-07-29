@@ -22,7 +22,7 @@ app.get('/applicants', function(req, res){
 			console.log(error);
 		}
 		else {
-			console.log(results);
+			// console.log(results);
 			res.render('applicants', {
 				'applicants': results
 			})	
@@ -46,9 +46,40 @@ app.post('/applicant', function(req, res){
 		experience: req.body.years,
 		reason: req.body.why
 	});
-	applicant.save();
-	// console.log(req.body);
-	res.redirect('/success');
+	applicant.save(function(error, results) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			res.redirect('/success');		
+		}
+	});
+});
+
+app.post('/remove', function(req, res){
+	Applicant.remove({ _id: req.body.id }, function(error, results) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			res.redirect('/applicants');
+		}
+	})
+});
+
+app.get('/applicants/:userid', function(req, res) {
+	Applicant.findById(req.params.userid, function(error, results) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			console.log(results);
+			// res.send(req.params);
+			res.render('applicant', {
+				'applicant': results
+			})
+		}
+	});	
 });
 
 var server = app.listen(8441, function() {
