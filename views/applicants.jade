@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	.container
+		h1 Applicants
+		each applicant in applicants
+			ul#applications.list-unstyled
+				li #{applicant.name}
+				li #{applicant.bio}
+				li #{applicant.skills}
+				li #{applicant.experience} years
+				li #{applicant.reason}
+				li #{applicant._id}
+				input(type='button' name='remove' value='Remove')
